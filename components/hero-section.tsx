@@ -66,7 +66,7 @@ export default function HeroSection() {
             {/* Main Heading */}
             <div className="space-y-6">
               <h1
-                className={`text-white transition-all duration-1000 ease-out font-hostGrotesk font-medium text-[88px] leading-[0.95] tracking-[-0.02em] capitalize ${
+                className={`text-white transition-all duration-1000 ease-out font-host-grotesk font-medium text-[88px] leading-[0.95] tracking-[-0.02em] capitalize ${
                   isVisible
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
