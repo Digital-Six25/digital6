@@ -168,13 +168,40 @@ export default function ContactSection() {
                 <div className="pt-4 flex justify-end">
                   <button
                     type="submit"
-                    className="group relative text-white font-semibold flex items-center font-instrument-sans"
+                    className="group relative text-white font-semibold flex font-instrument-sans"
                   >
-                    <span className="relative z-10">Submit Enquiry</span>
-                    <div className="ml-3 w-8 h-8 bg-[#FD893E] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <ArrowUpRight className="w-4 h-4 text-black" />
-                    </div>
+                    <span className="relative z-10 flex items-center underline-wrapper cursor-pointer">
+                      <span>Submit Enquiry</span>
+                      <div className="ml-3 w-8 h-8 bg-[#FD893E] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <ArrowUpRight className="w-4 h-4 text-black arrow-icon" />
+                      </div>
+                    </span>
                   </button>
+
+                  <style jsx>{`
+                    .underline-wrapper {
+                      position: relative;
+                    }
+                    .underline-wrapper::after {
+                      content: "";
+                      position: absolute;
+                      bottom: -4px;
+                      left: 0;
+                      height: 2px;
+                      width: 0;
+                      background-color: #fd893e;
+                      transition: width 0.3s ease;
+                      transform-origin: left;
+                    }
+                    button.group:hover .underline-wrapper::after {
+                      width: 80%;
+                      transform-origin: left; /* immediate */
+                    }
+                    button.group:not(:hover) .underline-wrapper::after {
+                      width: 0;
+                      transform-origin: right; /* immediate */
+                    }
+                  `}</style>
                 </div>
               </form>
             </div>
