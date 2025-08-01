@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import CtaButton from "./cta-button";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function ServicesSection() {
   const services = [

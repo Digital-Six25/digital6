@@ -1,11 +1,30 @@
 "use client";
 
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
+import { useRef } from "react";
 import CtaButton from "./cta-button";
 
 export default function CustomerRetentionSection() {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { margin: "-100px" });
+  const lines = [
+    <>
+      It Costs You <span className="text-[#FD893E]">5x More</span>
+    </>,
+    <>To Acquire A New</>,
+    <>Customer Than</>,
+    <>
+      {" "}
+      <span className="text-[#FD893E]">Keep One</span>
+    </>,
+  ];
+
   return (
-    <section className="relative bg-black py-24 overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative bg-black py-24 overflow-hidden"
+    >
       <img
         src="/images/get-started-bg.png" // make sure it's placed in /public/images
         alt="Decorative Curve Right"
@@ -71,15 +90,36 @@ export default function CustomerRetentionSection() {
                 </div>
               </div>
 
-              <h2 className="font-host-grotesk text-white leading-[90%] tracking-[-0.03em] text-5xl sm:text-6xl font-medium text-center sm:text-left ">
-                It Costs You <span className="text-[#FD893E]">5x More</span>
-                <br />
-                To Acquire A New
-                <br />
-                Customer Than
-                <br />
-                <span className="text-[#FD893E]">Keep One</span>
-              </h2>
+              <motion.h2
+                className="font-host-grotesk text-white leading-[90%] tracking-[-0.03em] text-5xl sm:text-6xl font-medium text-center sm:text-left"
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+                variants={{
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.3,
+                    },
+                  },
+                  hidden: {},
+                }}
+              >
+                {lines.map((line, index) => (
+                  <motion.div
+                    key={index}
+                    variants={{
+                      hidden: { opacity: 0, y: 30 },
+                      visible: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { duration: 0.6, ease: "easeOut" },
+                      },
+                    }}
+                    style={{ overflow: "hidden" }}
+                  >
+                    {line}
+                  </motion.div>
+                ))}
+              </motion.h2>
             </div>
 
             <div className="space-y-6 text-gray-300 font-instrument-sans">

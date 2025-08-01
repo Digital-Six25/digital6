@@ -1,10 +1,29 @@
 "use client";
 
 import CtaButton from "./cta-button";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 export default function EmailRevenueSection() {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { margin: "-100px" });
+  const headingLines = [
+    <>
+      Email Should Drive
+      <br />
+    </>,
+    <>
+      <span className="text-[#FD893E]">40%</span> Of Your Total
+      <br />
+      Revenue.
+    </>,
+  ];
+
   return (
-    <section className="relative bg-white py-24 overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative bg-white py-24 overflow-hidden"
+    >
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Top badges */}
         <div className="flex items-center justify-between mb-16">
@@ -46,13 +65,36 @@ export default function EmailRevenueSection() {
               </div>
             </div>
 
-            <h2 className="font-host-grotesk text-4xl md:text-5xl lg:text-6xl font-medium text-black leading-tight relative z-10">
-              Email Should Drive
-              <br />
-              <span className="text-[#FD893E]">40%</span> Of Your Total
-              <br />
-              Revenue.
-            </h2>
+            <motion.h2
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              variants={{
+                visible: {
+                  transition: {
+                    staggerChildren: 0.35,
+                  },
+                },
+                hidden: {},
+              }}
+              className="font-host-grotesk text-4xl md:text-5xl lg:text-6xl font-medium text-black leading-tight relative z-10"
+            >
+              {headingLines.map((line, i) => (
+                <motion.div
+                  key={i}
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.8, ease: "easeOut" },
+                    },
+                  }}
+                  style={{ overflow: "hidden" }}
+                >
+                  {line}
+                </motion.div>
+              ))}
+            </motion.h2>
           </div>
 
           {/* Description */}

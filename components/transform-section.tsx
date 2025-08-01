@@ -1,7 +1,13 @@
 "use client";
 import Image from "next/image";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 export default function TransformSection() {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { margin: "-100px" });
+  const headingLines = ["We Transform It Into", "A Powerful", "Revenue Engine"];
+
   const leftTags = [
     { text: "Customer Loyalty", color: "bg-[#FD893E]" },
     { text: "Overview", color: "bg-purple-600" },
@@ -13,7 +19,10 @@ export default function TransformSection() {
   ];
 
   return (
-    <section className="relative bg-black py-24 overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative bg-black py-24 overflow-hidden"
+    >
       {/* Top badges */}
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between w-full mb-4">
@@ -51,38 +60,100 @@ export default function TransformSection() {
             {/* Main Title with Overlapping Tags */}
             <div className="relative inline-block">
               {/* Left Tags */}
-              <div className="absolute -left-32 top-8 space-y-4 hidden lg:block">
+              <motion.div
+                className="absolute -left-32 top-8 space-y-4 hidden lg:block"
+                initial={{ x: -50, opacity: 0 }}
+                animate={isInView ? { x: 0, opacity: 1 } : {}}
+                transition={{
+                  type: "spring",
+                  bounce: 0.5,
+                  duration: 0.8,
+                  delay: 0.2,
+                }}
+              >
                 {leftTags.map((tag, index) => (
-                  <div key={index} className="flex justify-end">
+                  <motion.div
+                    key={index}
+                    initial={{ scale: 0.5, opacity: 0 }}
+                    animate={isInView ? { scale: 1, opacity: 1 } : {}}
+                    transition={{
+                      type: "spring",
+                      bounce: 0.4,
+                      delay: 0.2 + index * 0.15,
+                    }}
+                    className="flex justify-end"
+                  >
                     <span
                       className={`${tag.color} text-white px-4 py-2 rounded-full text-sm font-semibold font-instrument-sans shadow-lg`}
                     >
                       {tag.text}
                     </span>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
 
               {/* Title */}
-              <h2 className="font-host-grotesk text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                We Transform It Into
-                <br />A Powerful
-                <br />
-                Revenue Engine
-              </h2>
+              <motion.h2
+                className="font-host-grotesk text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight"
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+                variants={{
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.3,
+                    },
+                  },
+                  hidden: {},
+                }}
+              >
+                {headingLines.map((line, index) => (
+                  <motion.div
+                    key={index}
+                    variants={{
+                      hidden: { opacity: 0, y: 30 },
+                      visible: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { ease: "easeOut", duration: 0.8 },
+                      },
+                    }}
+                  >
+                    {line}
+                  </motion.div>
+                ))}
+              </motion.h2>
 
               {/* Right Tags */}
-              <div className="absolute -right-32 top-8 space-y-4 hidden lg:block">
+              <motion.div
+                className="absolute -right-32 top-8 space-y-4 hidden lg:block"
+                initial={{ x: 50, opacity: 0 }}
+                animate={isInView ? { x: 0, opacity: 1 } : {}}
+                transition={{
+                  type: "spring",
+                  bounce: 0.5,
+                  duration: 0.9,
+                  delay: 0.2,
+                }}
+              >
                 {rightTags.map((tag, index) => (
-                  <div key={index}>
+                  <motion.div
+                    key={index}
+                    initial={{ scale: 0.5, opacity: 0 }}
+                    animate={isInView ? { scale: 1, opacity: 1 } : {}}
+                    transition={{
+                      type: "spring",
+                      bounce: 0.4,
+                      delay: 0.2 + index * 0.15,
+                    }}
+                  >
                     <span
                       className={`${tag.color} text-white px-4 py-2 rounded-full text-sm font-semibold font-instrument-sans shadow-lg`}
                     >
                       {tag.text}
                     </span>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
 
             {/* Mobile Tags */}

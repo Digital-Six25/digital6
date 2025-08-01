@@ -1,10 +1,28 @@
 "use client";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 export default function ContactSection() {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { margin: "-100px" });
+  const headingLines = [
+    <>
+      Email Is Your <br />
+    </>,
+    <>
+      Most <span className="text-[#FD893E]">Profitable</span>
+      <br />
+    </>,
+    <>Channel.</>,
+  ];
+
   return (
-    <section className="relative bg-black py-24 overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative bg-black py-24 overflow-hidden"
+    >
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Top badges */}
         <div className="flex items-center justify-between mb-16">
@@ -41,9 +59,36 @@ export default function ContactSection() {
                 style={{ paddingLeft: "64px" }}
               >
                 <div className="space-y-0">
-                  <h2 className="font-host-grotesk text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
-                    Let's Talk Strategy
-                  </h2>
+                  <motion.h2
+                    className="font-host-grotesk text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight"
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
+                    variants={{
+                      visible: {
+                        transition: {
+                          staggerChildren: 0.35,
+                        },
+                      },
+                      hidden: {},
+                    }}
+                  >
+                    {headingLines.map((line, i) => (
+                      <motion.div
+                        key={i}
+                        variants={{
+                          hidden: { opacity: 0, y: 30 },
+                          visible: {
+                            opacity: 1,
+                            y: 0,
+                            transition: { duration: 0.8, ease: "easeOut" },
+                          },
+                        }}
+                        style={{ overflow: "hidden" }}
+                      >
+                        {line}
+                      </motion.div>
+                    ))}
+                  </motion.h2>
 
                   <div style={{ marginTop: "44px" }}>
                     <p className="text-gray-200 text-lg leading-relaxed font-instrument-sans max-w-md">

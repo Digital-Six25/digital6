@@ -1,19 +1,29 @@
 "use client";
 
+import { motion, useInView } from "framer-motion";
 import { ArrowUpRight, Star } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useRef } from "react";
 import CtaButton from "./cta-button";
 
 export default function HeroSection() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { margin: "-100px" });
+  const headingLines = [
+    <>
+      Email Is Your <br />
+    </>,
+    <>
+      Most <span className="text-[#FD893E]">Profitable</span>
+      <br />
+    </>,
+    <>Channel.</>,
+  ];
   return (
-    <div className="relative min-h-screen w-full overflow-hidden">
+    <div
+      ref={sectionRef}
+      className="relative min-h-screen w-full overflow-hidden"
+    >
       {/* Background Image */}
       <Image
         src={"/images/hero-bg.jpg"}
@@ -65,22 +75,40 @@ export default function HeroSection() {
 
             {/* Main Heading */}
             <div className="space-y-6">
-              <h1
-                className={`text-white transition-all duration-1000 ease-out font-host-grotesk font-medium text-[88px] leading-[0.95] tracking-[-0.02em] capitalize ${
-                  isVisible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
-                }`}
+              <motion.h1
+                className="text-white font-host-grotesk font-medium text-[88px] leading-[0.95] tracking-[-0.02em] capitalize"
+                initial="hidden"
+                animate={isInView ? "visible" : "hidden"}
+                variants={{
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.35,
+                    },
+                  },
+                  hidden: {},
+                }}
               >
-                Email Is Your <br />
-                Most <span className="text-[#FD893E]">Profitable</span>
-                <br />
-                Channel.
-              </h1>
+                {headingLines.map((line, i) => (
+                  <motion.div
+                    key={i}
+                    variants={{
+                      hidden: { opacity: 0, y: 30 },
+                      visible: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { duration: 0.8, ease: "easeOut" },
+                      },
+                    }}
+                    style={{ overflow: "hidden" }}
+                  >
+                    {line}
+                  </motion.div>
+                ))}
+              </motion.h1>
 
               <p
                 className={`text-3xl text-white  transition-all duration-1000 ease-out delay-300 ${
-                  isVisible
+                  isInView
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
                 }`}

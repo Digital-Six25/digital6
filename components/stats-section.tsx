@@ -38,17 +38,15 @@ export default function StatsSection() {
 
             const { scrollYProgress } = useScroll({
               target: ref,
-              offset: ["start end", "end start"], // Controls when animation starts/ends
+              offset: ["start end", "end start"],
             });
 
-            // Scale: small → big → small
             const scale = useTransform(
               scrollYProgress,
               [0, 0.5, 1],
               [0.5, 1, 0.5]
             );
 
-            // Opacity: transparent → opaque → transparent
             const opacity = useTransform(
               scrollYProgress,
               [0, 0.5, 1],
