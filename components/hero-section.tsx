@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Star, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Star } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import CtaButton from "./cta-button";
 
 export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -94,13 +94,7 @@ export default function HeroSection() {
             </div>
 
             {/* CTA Button */}
-            <Button className="bg-primary hover:bg-primary/90 text-black px-6 py-3 rounded-full font-normal transition-all duration-300 hover:scale-105 group/btn relative font-instrument-sans">
-              Turn your inbox into income
-              <div className="ml-3 w-8 h-8 bg-black rounded-full flex items-center justify-center">
-                <ArrowUpRight className="w-4 h-4 text-white group-hover/btn:scale-110 transition-transform" />
-              </div>
-            </Button>
-
+            <CtaButton path="#contact" text="Turn your inbox into income" />
             {/* Partner Logos */}
             <div className="flex items-center space-x-12 pt-12">
               <div>

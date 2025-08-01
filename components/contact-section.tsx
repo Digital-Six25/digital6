@@ -79,6 +79,7 @@ export default function ContactSection() {
             <div
               className="p-8 lg:p-12 flex flex-col justify-center"
               style={{ backgroundColor: "#151515" }}
+              id="contact"
             >
               <form className="space-y-8">
                 <div className="grid grid-cols-2 gap-6">

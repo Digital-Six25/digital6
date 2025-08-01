@@ -1,7 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { ArrowUpRight } from "lucide-react";
+import CtaButton from "./cta-button";
 
 export default function EmailRevenueSection() {
   return (
@@ -76,14 +75,7 @@ export default function EmailRevenueSection() {
           </div>
 
           {/* CTA Button */}
-          <div className="pt-8">
-            <Button className="bg-[#FD893E] hover:bg-[#FD893E]/90 text-black px-4 py-6 rounded-full font-normal transition-all duration-300 hover:scale-105 group/btn relative">
-              Let's Get Started
-              <div className="ml-3 w-8 h-8 bg-black rounded-full flex items-center justify-center">
-                <ArrowUpRight className="w-4 h-4 text-white group-hover/btn:scale-110 transition-transform" />
-              </div>
-            </Button>
-          </div>
+          <CtaButton path="#contact" text="Let's Get Started" />
         </div>
       </div>
     </section>

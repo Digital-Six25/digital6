@@ -1,8 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import CtaButton from "./cta-button";
 
 export default function ServicesSection() {
   const services = [
@@ -102,12 +101,7 @@ export default function ServicesSection() {
                   </p>
 
                   <div className="pt-4">
-                    <Button className="bg-[#FD893E] hover:bg-[#FD893E]/90 text-black px-6 py-3 rounded-full font-normal  group/btn relative">
-                      {service.buttonText}
-                      <div className="ml-3 w-8 h-8 bg-black rounded-full flex items-center justify-center">
-                        <ArrowUpRight className="w-4 h-4 text-white group-hover/btn:scale-110 transition-transform" />
-                      </div>
-                    </Button>
+                    <CtaButton path="#contact" text={service.buttonText} />
                   </div>
                 </div>
 

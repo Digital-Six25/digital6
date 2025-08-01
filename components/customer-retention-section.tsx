@@ -1,8 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import CtaButton from "./cta-button";
 
 export default function CustomerRetentionSection() {
   return (
@@ -97,13 +96,7 @@ export default function CustomerRetentionSection() {
                 relationships, and drive measurable growth.
               </p>
             </div>
-
-            <Button className="bg-primary text-black px-3 py-3 rounded-full font-normal relative">
-              Reignite Your Database
-              <div className="ml-3 w-8 h-8 bg-black rounded-full flex items-center justify-center">
-                <ArrowUpRight className="w-4 h-4 text-white group-hover/btn:scale-110 transition-transform" />
-              </div>
-            </Button>
+            <CtaButton path="#contact" text="Reignite Your Database" />
           </div>
         </div>
       </div>
