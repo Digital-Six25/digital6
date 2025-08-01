@@ -25,9 +25,9 @@ export default function CustomerRetentionSection() {
           <div className="relative">
             {/* Phone Mockup */}
             <div className="relative mx-auto w-80 h-[600px] bg-black rounded-[3rem] p-2 shadow-2xl">
-              <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
+              <div className="w-full h-full overflow-hidden relative">
                 <Image
-                  src="/placeholder.svg?height=600&width=300&text=STYLISH+App+Interface"
+                  src="/images/Floating phone _ Vertical.gif"
                   alt="Phone App Interface"
                   fill
                   className="object-cover"
