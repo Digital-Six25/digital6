@@ -1,9 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import CtaButton from "./cta-button";
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import CtaButton from "./cta-button";
 
 export default function ServicesSection() {
   const services = [
@@ -58,9 +57,9 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section className="relative bg-black py-24 overflow-hidden">
+    <section className="relative bg-black py-24">
       <img
-        src="/images/get-started-bg.png" // make sure it's placed in /public/images
+        src="/images/get-started-bg.png"
         alt="Decorative Curve Right"
         className="absolute right-0 top-0 h-full object-contain pointer-events-none select-none z-0"
       />
@@ -79,12 +78,12 @@ export default function ServicesSection() {
           </div>
         </div>
 
-        {/* Services Grid */}
-        <div className="space-y-8">
+        {/* Services Card */}
+        <div className="space-y-8 relative z-10">
           {services.map((service, index) => (
             <div
               key={service.id}
-              className="relative bg-gray-900/30 border border-gray-800 backdrop-blur-[7.9px]  p-8 group overflow-hidden"
+              className="sticky top-[50px]  bg-gray-900/30 border border-gray-800 backdrop-blur-[7.9px]  p-8 group overflow-hidden"
             >
               {/* Background Number */}
               <div className="absolute -left-24 -top-20 text-[254px] font-semibold text-primary/10 font-host-grotesk pointer-events-none">
