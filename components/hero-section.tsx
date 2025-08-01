@@ -79,7 +79,7 @@ export default function HeroSection() {
               </h1>
 
               <p
-                className={`text-3xl  transition-all duration-1000 ease-out delay-300 ${
+                className={`text-3xl text-white  transition-all duration-1000 ease-out delay-300 ${
                   isVisible
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
@@ -129,7 +129,7 @@ export default function HeroSection() {
             </div>
 
             {/* Form Container */}
-            <div className="bg-white/10 backdrop-blur-sm border border-white/60 p-6">
+            <div className="bg-white/10 backdrop-blur-sm border text-white border-white/60 p-6">
               <form className="space-y-6">
                 <div className="grid grid-cols-2 gap-4">
                   <div>

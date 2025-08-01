@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 
 export default function StatsSection() {
   const stats = [
@@ -22,9 +23,8 @@ export default function StatsSection() {
 
   return (
     <section className="relative bg-black py-24 overflow-hidden">
-      {/* Decorative Background Image */}
       <img
-        src="/images/stats-bg.png" // make sure the file is in public/images/
+        src="/images/stats-bg.png"
         alt="Decorative Curve"
         className="absolute left-0 top-0 h-full object-contain pointer-events-none select-none z-0"
       />
