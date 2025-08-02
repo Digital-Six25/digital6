@@ -77,7 +77,7 @@ export default function StatsSection() {
             return (
               <div key={index} ref={ref} className="text-center">
                 <div
-                  style={{ scale }}
+                  style={{ scale: scale as any }}
                   className="text-6xl md:text-7xl lg:text-8xl font-medium font-host-grotesk mb-4 text-primary inline-block"
                 >
                   {valueLetters.map((char, i) => (
@@ -92,12 +92,12 @@ export default function StatsSection() {
                 </div>
 
                 <motion.div
-                  style={{ scale }}
+                  style={{ scale: scale as any }}
                   className="h-px w-60 bg-white mx-auto mb-4"
                 />
 
                 <div
-                  style={{ scale }}
+                  style={{ scale: scale as any }}
                   className="text-gray-400 text-lg md:text-xl font-instrument-sans max-w-md mx-auto inline-block"
                 >
                   {labelLetters.map((char, i) => (
