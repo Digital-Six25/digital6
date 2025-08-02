@@ -47,30 +47,69 @@ export default function StatsSection() {
               [0.5, 1, 0.5]
             );
 
-            const opacity = useTransform(
-              scrollYProgress,
-              [0, 0.5, 1],
-              [0, 1, 0]
+            // Helper to get staggered opacity transforms for each letter
+            const getLetterOpacityTransforms = (length: number) => {
+              const transforms = [];
+              for (let i = 0; i < length; i++) {
+                const delayIn = i / (length * 2);
+                const delayOut = 0.5 + i / (length * 2);
+                transforms.push(
+                  useTransform(
+                    scrollYProgress,
+                    [delayIn, 0.5, delayOut + 0.1],
+                    [0, 1, 0]
+                  )
+                );
+              }
+              return transforms;
+            };
+
+            const valueLetters = stat.value.split("");
+            const valueOpacities = getLetterOpacityTransforms(
+              valueLetters.length
+            );
+
+            const labelLetters = stat.label.split("");
+            const labelOpacities = getLetterOpacityTransforms(
+              labelLetters.length
             );
 
             return (
               <div key={index} ref={ref} className="text-center">
-                <motion.div
-                  style={{ scale, opacity }}
-                  className="text-6xl md:text-7xl lg:text-8xl font-medium font-host-grotesk mb-4 text-primary"
+                <div
+                  style={{ scale }}
+                  className="text-6xl md:text-7xl lg:text-8xl font-medium font-host-grotesk mb-4 text-primary inline-block"
                 >
-                  {stat.value}
-                </motion.div>
+                  {valueLetters.map((char, i) => (
+                    <motion.span
+                      key={i}
+                      style={{ opacity: valueOpacities[i] }}
+                      className="inline-block"
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                </div>
+
                 <motion.div
-                  style={{ scale, opacity }}
+                  style={{ scale }}
                   className="h-px w-60 bg-white mx-auto mb-4"
                 />
-                <motion.div
-                  style={{ scale, opacity }}
-                  className="text-gray-400 text-lg md:text-xl font-instrument-sans max-w-md mx-auto"
+
+                <div
+                  style={{ scale }}
+                  className="text-gray-400 text-lg md:text-xl font-instrument-sans max-w-md mx-auto inline-block"
                 >
-                  {stat.label}
-                </motion.div>
+                  {labelLetters.map((char, i) => (
+                    <motion.span
+                      key={i}
+                      style={{ opacity: labelOpacities[i] }}
+                      className="inline-block"
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                </div>
               </div>
             );
           })}
