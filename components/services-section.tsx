@@ -102,10 +102,10 @@ export default function ServicesSection() {
             );
             return (
               <motion.div
-                style={{ opacity }}
+                style={{ opacity: 1, scale }}
                 key={service.id}
                 ref={ref}
-                className="sticky top-[50px] bg-black border border-gray-800  p-8 group overflow-hidden"
+                className="sticky top-[0px] bg-black border border-gray-800  p-8 group overflow-hidden"
               >
                 {/* Background Number */}
                 <div className="absolute -left-24 -top-20 text-[254px] font-semibold text-primary/10 font-host-grotesk pointer-events-none">
