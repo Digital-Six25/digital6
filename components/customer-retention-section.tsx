@@ -122,7 +122,7 @@ export default function CustomerRetentionSection() {
               </motion.h2>
             </div>
 
-            <div className="space-y-6 text-gray-300 font-instrument-sans">
+            <div className="space-y-6 text-center sm:text-left text-gray-300 font-instrument-sans">
               <p className="text-lg leading-relaxed">
                 Smart ecom-brands don't just send emails - they build revenue
                 machines. Because in today's digital landscape, targeting your
@@ -135,8 +135,8 @@ export default function CustomerRetentionSection() {
                 data-driven campaigns that captivate audiences, strengthen
                 relationships, and drive measurable growth.
               </p>
+              <CtaButton path="#contact" text="Reignite Your Database" />
             </div>
-            <CtaButton path="#contact" text="Reignite Your Database" />
           </div>
         </div>
       </div>

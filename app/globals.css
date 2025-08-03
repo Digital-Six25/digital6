@@ -30,6 +30,10 @@
     animation: fly-out-in 1s linear infinite;
   }
 }
+::selection {
+  background-color: #fd893e;
+  color: white;
+}
 
 @layer base {
   :root {

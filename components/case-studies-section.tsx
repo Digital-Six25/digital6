@@ -2,7 +2,7 @@
 
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { easeInOut, motion } from "framer-motion";
 import Link from "next/link";
 
 export default function CaseStudiesSection() {
@@ -53,7 +53,7 @@ export default function CaseStudiesSection() {
       y: 0,
       transition: {
         duration: 2.5,
-        ease: "easeInOut",
+        ease: easeInOut,
       },
     },
   };
@@ -62,7 +62,7 @@ export default function CaseStudiesSection() {
     <section className="relative bg-black py-24 overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <motion.div
-          className="flex space-x-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory"
+          className="flex flex-wrap sm:flex-nowrap space-x-0 sm:space-x-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory"
           style={{ overflowY: "hidden", maxHeight: "100%" }}
           variants={containerVariants}
           initial="hidden"
@@ -72,7 +72,7 @@ export default function CaseStudiesSection() {
           {caseStudies.map((study) => (
             <motion.div
               key={study.id}
-              className="flex-shrink-0 w-[48%] snap-start rounded-xl"
+              className="flex-shrink-0 w-full sm:w-[48%] snap-start rounded-xl"
               variants={cardVariants}
             >
               {/* Image */}

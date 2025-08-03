@@ -6,17 +6,7 @@ import { useRef } from "react";
 
 export default function ContactSection() {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { margin: "-100px" });
-  const headingLines = [
-    <>
-      Email Is Your <br />
-    </>,
-    <>
-      Most <span className="text-[#FD893E]">Profitable</span>
-      <br />
-    </>,
-    <>Channel.</>,
-  ];
+  const isInView = useInView(sectionRef);
 
   return (
     <section
@@ -72,22 +62,18 @@ export default function ContactSection() {
                       hidden: {},
                     }}
                   >
-                    {headingLines.map((line, i) => (
-                      <motion.div
-                        key={i}
-                        variants={{
-                          hidden: { opacity: 0, y: 30 },
-                          visible: {
-                            opacity: 1,
-                            y: 0,
-                            transition: { duration: 0.8, ease: "easeOut" },
-                          },
-                        }}
-                        style={{ overflow: "hidden" }}
-                      >
-                        {line}
-                      </motion.div>
-                    ))}
+                    <motion.div
+                      variants={{
+                        hidden: { opacity: 0, y: 30 },
+                        visible: {
+                          opacity: 1,
+                          y: 0,
+                          transition: { duration: 0.8, ease: "easeOut" },
+                        },
+                      }}
+                    >
+                      Let's Talk Strategy
+                    </motion.div>
                   </motion.h2>
 
                   <div style={{ marginTop: "44px" }}>
@@ -102,7 +88,7 @@ export default function ContactSection() {
                     <div>
                       <a
                         href="tel:1300946735"
-                        className="text-[#FD893E] text-xl font-semibold hover:text-[#FD893E]/80 transition-colors font-instrument-sans"
+                        className="text-[#FD893E] text-xl font-semibold hover:text-[#FD893E]/80 transition-colors font-instrument-sans border-b-2 border-[#FD893E] pb-1"
                       >
                         1300 946 735
                       </a>
@@ -110,7 +96,7 @@ export default function ContactSection() {
                     <div>
                       <a
                         href="mailto:hello@digitalsix.com.au"
-                        className="text-[#FD893E] text-xl font-semibold hover:text-[#FD893E]/80 transition-colors font-instrument-sans"
+                        className="text-[#FD893E] text-xl font-semibold hover:text-[#FD893E]/80 transition-colors font-instrument-sans border-b-2 border-[#FD893E] pb-1"
                       >
                         hello@digitalsix.com.au
                       </a>

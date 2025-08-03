@@ -44,8 +44,8 @@ export default function EmailRevenueSection() {
           {/* Title with Overlapping Circular Text */}
           <div className="relative">
             {/* Rotating circular text that overlaps the first letter */}
-            <div className="absolute -top-[18px] left-[310px] z-20">
-              <div className="w-24 h-24 relative">
+            <div className="absolute sm:-top-[18px] -top-[35px] sm:left-[310px] -left-[10px] z-20">
+              <div className="sm:w-24 sm:h-24 w-14 h-14 relative">
                 <svg
                   className="w-full h-full animate-spin-slow"
                   viewBox="0 0 100 100"

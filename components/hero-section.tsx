@@ -36,10 +36,11 @@ export default function HeroSection() {
 
       {/* Black Overlay */}
       <div className="absolute inset-0 bg-black/80"></div>
+
       {/* Content */}
-      <div className="relative z-10 px-12 py-8">
+      <div className="relative z-10 px-6 sm:px-8 md:px-12 py-6 sm:py-8 md:py-8">
         {/* Navbar */}
-        <nav className="flex items-center justify-between mb-16">
+        <nav className="flex items-center justify-between mb-12 sm:mb-16">
           <div className="text-2xl font-bold">
             <span className="bg-gradient-to-r from-[#E7B939] to-[#C75752] bg-clip-text text-transparent">
               digital 6
@@ -48,35 +49,35 @@ export default function HeroSection() {
         </nav>
 
         {/* Main Content */}
-        <div className="grid lg:grid-cols-2 gap-16 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 max-w-7xl mx-auto">
           {/* Left Column */}
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             {/* Review Badge */}
-            <div className="flex items-center space-x-2 bg-black/60 backdrop-blur-sm rounded-full px-4 py-2 w-fit border border-[#6AE5CE]">
+            <div className="flex items-center space-x-2 bg-black/60 backdrop-blur-sm rounded-full px-3 py-1 sm:px-4 sm:py-2 w-fit border border-[#6AE5CE]">
               <div className="flex items-center space-x-1">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className="w-4 h-4 fill-[#F5D96B] text-[#F5D96B]"
+                    className="w-3 h-3 sm:w-4 sm:h-4 fill-[#F5D96B] text-[#F5D96B]"
                   />
                 ))}
               </div>
               <Image
                 src={"/images/google-logo.png"}
                 alt="google logo"
-                width={16}
-                height={16}
+                width={14}
+                height={14}
+                className="sm:w-4 sm:h-4"
               />
-              <span className="text-white text-sm">
-                {" "}
+              <span className="text-white text-xs sm:text-sm">
                 <span className="font-bold">84+</span> 5 Star Reviews
               </span>
             </div>
 
             {/* Main Heading */}
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               <motion.h1
-                className="text-white font-host-grotesk font-medium text-[88px] leading-[0.95] tracking-[-0.02em] capitalize"
+                className="text-white font-host-grotesk font-medium text-5xl sm:text-6xl md:text-[88px] leading-[1.1] sm:leading-[1] tracking-[-0.02em] capitalize"
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
                 variants={{
@@ -107,7 +108,7 @@ export default function HeroSection() {
               </motion.h1>
 
               <p
-                className={`text-3xl text-white  transition-all duration-1000 ease-out delay-300 ${
+                className={`text-xl sm:text-3xl text-white  transition-all duration-1000 ease-out delay-300 ${
                   isInView
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
@@ -123,78 +124,85 @@ export default function HeroSection() {
 
             {/* CTA Button */}
             <CtaButton path="#contact" text="Turn your inbox into income" />
+
             {/* Partner Logos */}
-            <div className="flex items-center space-x-12 pt-12">
-              <div>
+            <div className="flex  items-center space-x-6 sm:space-x-12 pt-8 sm:pt-12">
+              <div className="mb-4 sm:mb-0">
                 <Image
                   src={"/images/klaviyo-logo.png"}
                   alt="klaviyo logo"
-                  height={150}
-                  width={150}
+                  height={200}
+                  width={200}
+                  // className="sm:h-[150px] sm:w-[150px]"
                 />
               </div>
-              <div>
+              <div className="mb-4 sm:mb-0">
                 <Image
                   src={"/images/hubspot-logo.png"}
-                  alt="klaviyo logo"
-                  height={67}
-                  width={189}
+                  alt="hubspot logo"
+                  height={45}
+                  width={120}
+                  className="sm:h-[67px] sm:w-[189px]"
                 />
               </div>
             </div>
           </div>
 
           {/* Right Column - Contact Form */}
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center mt-10 lg:mt-0 px-0 sm:px-4">
             {/* Form Title */}
-            <div className="flex items-center space-x-2 mb-8">
+            <div className="flex items-center space-x-2 mb-6">
               <div className="relative">
                 <div className="relative inline-flex h-2 w-2 rounded-full bg-primary  animate-pulse"></div>
               </div>
-              <h3 className="text-white text-lg font-normal font-instrument-sans">
+              <h3 className="text-white text-base sm:text-lg font-normal font-instrument-sans">
                 Let's Talk Strategy
               </h3>
             </div>
 
             {/* Form Container */}
-            <div className="bg-white/10 backdrop-blur-sm border text-white border-white/60 p-6">
-              <form className="space-y-6">
-                <div className="grid grid-cols-2 gap-4">
+            <div className="bg-white/10 backdrop-blur-sm border text-white border-white/60 p-4 sm:p-6 rounded-md">
+              <form className="space-y-5 sm:space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="">
+                    <label htmlFor="firstName" className="block text-sm mb-1">
                       First Name <span className="text-red-600">*</span>{" "}
                     </label>
                     <input
+                      id="firstName"
                       type="text"
                       className="w-full bg-transparent border-0 border-b border-gray-600 text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans text-sm"
                     />
                   </div>
                   <div>
-                    <label htmlFor="">
+                    <label htmlFor="lastName" className="block text-sm mb-1">
                       Last Name <span className="text-red-600">*</span>{" "}
                     </label>
                     <input
+                      id="lastName"
                       type="text"
                       className="w-full bg-transparent border-0 border-b border-gray-600 text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans text-sm"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="">
+                    <label htmlFor="email" className="block text-sm mb-1">
                       Email Address <span className="text-red-600">*</span>{" "}
                     </label>
                     <input
+                      id="email"
                       type="email"
                       className="w-full bg-transparent border-0 border-b border-gray-600 text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans text-sm"
                     />
                   </div>
                   <div>
-                    <label htmlFor="">
+                    <label htmlFor="phone" className="block text-sm mb-1">
                       Phone Number <span className="text-red-600">*</span>{" "}
                     </label>
                     <input
+                      id="phone"
                       type="tel"
                       className="w-full bg-transparent border-0 border-b border-gray-600 text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans text-sm"
                     />
@@ -202,18 +210,22 @@ export default function HeroSection() {
                 </div>
 
                 <div>
-                  <label htmlFor="">
+                  <label htmlFor="company" className="block text-sm mb-1">
                     Company Name <span className="text-red-600">*</span>{" "}
                   </label>
                   <input
+                    id="company"
                     type="text"
                     className="w-full bg-transparent border-0 border-b border-gray-600 text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans text-sm"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="">More Information (Optional)</label>
+                  <label htmlFor="moreInfo" className="block text-sm mb-1">
+                    More Information (Optional)
+                  </label>
                   <textarea
+                    id="moreInfo"
                     rows={4}
                     className="w-full bg-transparent border-0 border-b border-gray-600 text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 resize-none font-instrument-sans text-sm"
                   />
@@ -249,11 +261,11 @@ export default function HeroSection() {
                     }
                     button.group:hover .underline-wrapper::after {
                       width: 80%;
-                      transform-origin: left; /* immediate */
+                      transform-origin: left;
                     }
                     button.group:not(:hover) .underline-wrapper::after {
                       width: 0;
-                      transform-origin: right; /* immediate */
+                      transform-origin: right;
                     }
                   `}</style>
                 </div>
