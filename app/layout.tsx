@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import SmoothScroll from "@/components/SmoothScroll";
 
 // Instrument Sans from Google Fonts
 const instrumentSans = localFont({
@@ -39,6 +40,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <SmoothScroll />
           {children}
         </ThemeProvider>
       </body>
