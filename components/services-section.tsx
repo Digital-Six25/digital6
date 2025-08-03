@@ -57,6 +57,14 @@ export default function ServicesSection() {
     },
   ];
 
+  const containerRef = useRef(null);
+
+  // Scroll progress of entire container (0 to 1)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
   return (
     <section className="relative bg-black py-24">
       <img
@@ -65,7 +73,7 @@ export default function ServicesSection() {
         className="absolute right-0 top-0 h-full object-contain pointer-events-none select-none z-0"
       />
       {/* Top badges */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div ref={containerRef} className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between mb-16">
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 bg-[#FD893E] rounded-full"></div>
@@ -82,30 +90,23 @@ export default function ServicesSection() {
         {/* Services Card */}
         <div className="space-y-8 relative z-10">
           {services.map((service, index) => {
-            const ref = useRef(null);
+            const total = services.length;
+            const chunk = 1 / total;
 
-            const { scrollYProgress } = useScroll({
-              target: ref,
-              offset: ["start end", "end start"],
-            });
+            // start and end scroll progress for this card
+            const start = index * chunk;
+            const end = start + chunk;
 
-            const scale = useTransform(
-              scrollYProgress,
-              [0, 0.5, 1],
-              [0.5, 1, 0.5]
-            );
+            // scale & opacity stays 1 while scroll progress is within card's chunk,
+            // then scales down to 0 as next card scroll progress enters its chunk
+            const scale = useTransform(scrollYProgress, [start, end], [1, 0.9]);
+            const opacity = useTransform(scrollYProgress, [start, end], [1, 0]);
 
-            const opacity = useTransform(
-              scrollYProgress,
-              [0, 0.5, 1],
-              [0, 1, 0]
-            );
             return (
               <motion.div
-                style={{ opacity: 1, scale }}
                 key={service.id}
-                ref={ref}
-                className="sticky top-[0px] bg-black border border-gray-800  p-8 group overflow-hidden"
+                style={{ scale, opacity: 1 }}
+                className="sticky top-4 bg-black border border-gray-800 p-8 group overflow-hidden"
               >
                 {/* Background Number */}
                 <div className="absolute -left-24 -top-20 text-[254px] font-semibold text-primary/10 font-host-grotesk pointer-events-none">
@@ -130,7 +131,7 @@ export default function ServicesSection() {
 
                   {/* Image */}
                   <div className="relative">
-                    <div className="relative h-[313px] w-full max-w-[509px] ml-auto  overflow-hidden">
+                    <div className="relative h-[313px] w-full max-w-[509px] ml-auto overflow-hidden">
                       <Image
                         src={service.image || "/placeholder.svg"}
                         alt={service.title}
