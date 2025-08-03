@@ -11,7 +11,7 @@ export default function ServicesSection() {
       id: "01",
       title: "Email Flows",
       description:
-        "AOV-focused leading email marketing agency, we design strategic flows that guide customers through targeted interactions, boosting conversions and maximizing revenue with every touchpoint.",
+        "As Australia’s leading email marketing agency, we design strategic flows that guide subscribers through every stage of the customer journey –  from welcome sequences to re-engagement series – maximising brand exposure and conversions.",
       image: "/images/expertise-1.jpg",
       buttonText: "Let's Get Started",
     },
@@ -19,7 +19,7 @@ export default function ServicesSection() {
       id: "02",
       title: "Email Campaigns",
       description:
-        "AOV-focused leading email marketing agency, we design strategic flows that guide customers through targeted interactions, boosting conversions and maximizing revenue with every touchpoint.",
+        "As Australia’s leading email marketing agency, we design strategic flows that guide subscribers through every stage of the customer journey –  from welcome sequences to re-engagement series – maximising brand exposure and conversions.",
       image: "/images/expertise-2.jpg",
       buttonText: "Let's Get Started",
     },
@@ -27,7 +27,7 @@ export default function ServicesSection() {
       id: "03",
       title: "Ecom Specific",
       description:
-        "AOV-focused leading email marketing agency, we design strategic flows that guide customers through targeted interactions, boosting conversions and maximizing revenue with every touchpoint.",
+        "As Australia’s leading email marketing agency, we design strategic flows that guide subscribers through every stage of the customer journey –  from welcome sequences to re-engagement series – maximising brand exposure and conversions.",
       image: "/images/expertise-3.jpg",
       buttonText: "Let's Get Started",
     },
@@ -35,7 +35,7 @@ export default function ServicesSection() {
       id: "04",
       title: "Automation",
       description:
-        "AOV-focused leading email marketing agency, we design strategic flows that guide customers through targeted interactions, boosting conversions and maximizing revenue with every touchpoint.",
+        "As Australia’s leading email marketing agency, we design strategic flows that guide subscribers through every stage of the customer journey –  from welcome sequences to re-engagement series – maximising brand exposure and conversions.",
       image: "/images/expertise-4.jpg",
       buttonText: "Let's Get Started",
     },
@@ -43,7 +43,7 @@ export default function ServicesSection() {
       id: "05",
       title: "Segmentation",
       description:
-        "AOV-focused leading email marketing agency, we design strategic flows that guide customers through targeted interactions, boosting conversions and maximizing revenue with every touchpoint.",
+        "As Australia’s leading email marketing agency, we design strategic flows that guide subscribers through every stage of the customer journey –  from welcome sequences to re-engagement series – maximising brand exposure and conversions.",
       image: "/images/expertise-5.jpg",
       buttonText: "Let's Get Started",
     },
@@ -51,7 +51,7 @@ export default function ServicesSection() {
       id: "06",
       title: "SMS Campaigns",
       description:
-        "AOV-focused leading email marketing agency, we design strategic flows that guide customers through targeted interactions, boosting conversions and maximizing revenue with every touchpoint.",
+        "As Australia’s leading email marketing agency, we design strategic flows that guide subscribers through every stage of the customer journey –  from welcome sequences to re-engagement series – maximising brand exposure and conversions.",
       image: "/images/expertise-6.jpg",
       buttonText: "Let's Get Started",
     },

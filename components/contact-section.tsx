@@ -138,7 +138,6 @@ export default function ContactSection() {
                     <input
                       type="text"
                       className="w-full bg-transparent border-0 border-b border-[#E3E8EF] text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans"
-                      placeholder="First Name"
                     />
                   </div>
                   <div className="space-y-2">
@@ -151,7 +150,6 @@ export default function ContactSection() {
                     <input
                       type="text"
                       className="w-full bg-transparent border-0 border-b border-[#E3E8EF] text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans"
-                      placeholder="Last Name"
                     />
                   </div>
                 </div>
@@ -167,7 +165,6 @@ export default function ContactSection() {
                     <input
                       type="email"
                       className="w-full bg-transparent border-0 border-b border-[#E3E8EF] text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans"
-                      placeholder="Email Address"
                     />
                   </div>
                   <div className="space-y-2">
@@ -180,7 +177,6 @@ export default function ContactSection() {
                     <input
                       type="tel"
                       className="w-full bg-transparent border-0 border-b border-[#E3E8EF] text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans"
-                      placeholder="Phone Number"
                     />
                   </div>
                 </div>
@@ -195,7 +191,6 @@ export default function ContactSection() {
                   <input
                     type="text"
                     className="w-full bg-transparent border-0 border-b border-[#E3E8EF] text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans"
-                    placeholder="Company Name"
                   />
                 </div>
 
@@ -206,7 +201,6 @@ export default function ContactSection() {
                   <textarea
                     rows={1}
                     className="w-full bg-transparent border-0 border-b border-[#E3E8EF] text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 resize-none font-instrument-sans"
-                    placeholder="More Information (Optional)"
                   />
                 </div>
 
