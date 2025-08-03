@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import CtaButton from "./cta-button";
 
 export default function ServicesSection() {
@@ -80,46 +81,68 @@ export default function ServicesSection() {
 
         {/* Services Card */}
         <div className="space-y-8 relative z-10">
-          {services.map((service, index) => (
-            <div
-              key={service.id}
-              className="sticky top-[50px]  bg-gray-900/30 border border-gray-800 backdrop-blur-[7.9px]  p-8 group overflow-hidden"
-            >
-              {/* Background Number */}
-              <div className="absolute -left-24 -top-20 text-[254px] font-semibold text-primary/10 font-host-grotesk pointer-events-none">
-                {service.id}
-              </div>
+          {services.map((service, index) => {
+            const ref = useRef(null);
 
-              <div className="relative z-10 grid lg:grid-cols-2 gap-8 items-center">
-                {/* Content */}
-                <div className="space-y-6">
-                  <h3 className="font-host-grotesk text-3xl md:text-6xl font-normal text-white">
-                    {service.title}
-                  </h3>
+            const { scrollYProgress } = useScroll({
+              target: ref,
+              offset: ["start end", "end start"],
+            });
 
-                  <p className="text-gray-400 text-lg leading-relaxed font-instrument-sans max-w-lg">
-                    {service.description}
-                  </p>
+            const scale = useTransform(
+              scrollYProgress,
+              [0, 0.5, 1],
+              [0.5, 1, 0.5]
+            );
 
-                  <div className="pt-4">
-                    <CtaButton path="#contact" text={service.buttonText} />
-                  </div>
+            const opacity = useTransform(
+              scrollYProgress,
+              [0, 0.5, 1],
+              [0, 1, 0]
+            );
+            return (
+              <motion.div
+                style={{ opacity }}
+                key={service.id}
+                ref={ref}
+                className="sticky top-[50px] bg-black border border-gray-800  p-8 group overflow-hidden"
+              >
+                {/* Background Number */}
+                <div className="absolute -left-24 -top-20 text-[254px] font-semibold text-primary/10 font-host-grotesk pointer-events-none">
+                  {service.id}
                 </div>
 
-                {/* Image */}
-                <div className="relative">
-                  <div className="relative h-[313px] w-full max-w-[509px] ml-auto  overflow-hidden">
-                    <Image
-                      src={service.image || "/placeholder.svg"}
-                      alt={service.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
+                <div className="relative z-10 grid lg:grid-cols-2 gap-8 items-center">
+                  {/* Content */}
+                  <div className="space-y-6">
+                    <h3 className="font-host-grotesk text-3xl md:text-6xl font-normal text-white">
+                      {service.title}
+                    </h3>
+
+                    <p className="text-gray-400 text-lg leading-relaxed font-instrument-sans max-w-lg">
+                      {service.description}
+                    </p>
+
+                    <div className="pt-4">
+                      <CtaButton path="#contact" text={service.buttonText} />
+                    </div>
+                  </div>
+
+                  {/* Image */}
+                  <div className="relative">
+                    <div className="relative h-[313px] w-full max-w-[509px] ml-auto  overflow-hidden">
+                      <Image
+                        src={service.image || "/placeholder.svg"}
+                        alt={service.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
