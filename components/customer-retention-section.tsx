@@ -45,7 +45,7 @@ export default function CustomerRetentionSection() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-2 items-center">
           {/* Left Column - Phone Mockup */}
           <div className="relative">
             {/* Phone Mockup */}

@@ -40,7 +40,7 @@ export default function CaseStudiesSection() {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 1.2,
+        staggerChildren: 0.5,
       },
     },
   };

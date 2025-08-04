@@ -33,13 +33,13 @@ export default function TransformSection() {
   const leftTags = [
     {
       text: "Customer Loyalty",
-      color: "bg-[#FD893E]",
+      color: "bg-teal-500",
       style: "top-[1.0rem] left-[2.5rem]",
       styleMobile: "-top-[15rem] -left-[2.0rem]", // Mobile
     },
     {
       text: "SMS",
-      color: "bg-teal-500",
+      color: "bg-purple-600",
       style: "top-[7.2rem] left-[8.8rem]",
       styleMobile: "-top-[3.8rem] left-[2.5rem]", //Mobile
     },
@@ -53,7 +53,7 @@ export default function TransformSection() {
     },
     {
       text: "CRM Management",
-      color: "bg-yellow-500",
+      color: "bg-teal-500",
       style: "top-[7.4rem] right-[3.8rem]",
       styleMobile: "-top-[10.6rem] -right-[3rem]",
     },
@@ -125,7 +125,7 @@ export default function TransformSection() {
                     className={`absolute ${tag.style}`}
                   >
                     <span
-                      className={`${tag.color} text-black whitespace-nowrap px-4 py-2 rounded-full text-base font-semibold font-instrument-sans shadow-lg`}
+                      className={`${tag.color} text-black whitespace-nowrap px-4 py-2 rounded-full text-base font-normal font-instrument-sans shadow-lg`}
                     >
                       {tag.text}
                     </span>
