@@ -10,7 +10,7 @@ export default function CaseStudiesSection() {
     {
       id: 1,
       image: "/images/case-study-1.jpg",
-      tags: ["Email Marketing", "SEO", "Shopify", "Meta Ads"],
+      tags: ["Email Marketing"],
       title: "219% Surge In Annual Revenue",
       description:
         "Discover how our partnership pumped an impressive $20,000 into the client's pocket in just one month, transforming their financial outlook and enabling them to invest in new opportunities.",
@@ -19,7 +19,7 @@ export default function CaseStudiesSection() {
     {
       id: 2,
       image: "/images/case-study-2.jpg",
-      tags: ["Email Marketing", "SEO", "Google Ads", "Social Media"],
+      tags: ["Email Marketing"],
       title: "Unbeatable Business Insights",
       description:
         "We didn't just send emails; we built a system that gave them unmatched insights into every customer's journey, leading to more accurate smarter business decisions and a sales cycle that just got more efficient.",

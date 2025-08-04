@@ -32,10 +32,16 @@ export default function CustomerRetentionSection() {
       />
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Top badges */}
-        <div className="flex items-center justify-between mb-16">
+        <div className="flex items-center justify-between sm:mb-24">
           <div className="flex items-center space-x-2">
-            <div className="w-2 h-2 bg-primary animate-pulse rounded-full"></div>
-            <span className="text-gray-400 text-sm">Let's Get Started</span>
+            <div className="w-2 h-2 bg-[#FD893E] rounded-full"></div>
+            <span className="text-gray-300 sm:text-lg font-normal font-instrument-sans">
+              Get In Touch
+            </span>
+          </div>
+
+          <div className="text-gray-300 sm:text-lg font-normal font-instrument-sans">
+            Digital Six
           </div>
         </div>
 

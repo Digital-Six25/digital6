@@ -6,16 +6,57 @@ import { useRef } from "react";
 export default function TransformSection() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { margin: "-100px" });
-  const headingLines = ["We Transform It Into", "A Powerful", "Revenue Engine"];
 
-  const leftTags = [
-    { text: "Customer Loyalty", color: "bg-[#FD893E]" },
-    { text: "Overview", color: "bg-purple-600" },
+  const headingLines = [
+    {
+      desktop: "We Transform It Into",
+      mobile: "We Transform",
+    },
+    {
+      desktop: "A Powerful",
+      mobile: "Into A",
+    },
+    {
+      desktop: "Revenue Engine",
+      mobile: (
+        <>
+          Powerful
+          <br />
+          Revenue
+          <br />
+          Engine
+        </>
+      ),
+    },
   ];
 
+  const leftTags = [
+    {
+      text: "Customer Loyalty",
+      color: "bg-[#FD893E]",
+      style: "top-[1.0rem] left-[2.5rem]",
+      styleMobile: "-top-[15rem] -left-[2.0rem]", // Mobile
+    },
+    {
+      text: "SMS",
+      color: "bg-teal-500",
+      style: "top-[7.2rem] left-[8.8rem]",
+      styleMobile: "-top-[3.8rem] left-[2.5rem]", //Mobile
+    },
+  ];
   const rightTags = [
-    { text: "SMS", color: "bg-teal-500" },
-    { text: "Data Management", color: "bg-yellow-500" },
+    {
+      text: "Reviews",
+      color: "bg-purple-600",
+      style: "top-[3.0rem] right-[11rem]",
+      styleMobile: "-top-[16.5rem] left-[13.2rem]", //Mobile
+    },
+    {
+      text: "CRM Management",
+      color: "bg-yellow-500",
+      style: "top-[7.4rem] right-[3.8rem]",
+      styleMobile: "-top-[10.6rem] -right-[3rem]",
+    },
   ];
 
   return (
@@ -28,11 +69,11 @@ export default function TransformSection() {
         <div className="flex items-center justify-between w-full mb-4">
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 bg-[#FD893E] rounded-full animate-pulse" />
-            <span className="text-gray-300 text-sm font-instrument-sans">
+            <span className="text-gray-300 sm:text-lg font-normal font-instrument-sans">
               Lifetime Value
             </span>
           </div>
-          <div className="text-gray-300 text-sm font-instrument-sans">
+          <div className="text-gray-300 sm:text-lg font-normal font-instrument-sans">
             Digital Six
           </div>
         </div>
@@ -51,7 +92,7 @@ export default function TransformSection() {
           </div>
 
           {/* Absolute Text Content over the image */}
-          <div className="absolute inset-0 flex flex-col justify-center items-center px-4 text-center space-y-10">
+          <div className="absolute inset-0 flex flex-col justify-center items-center px-4 text-center space-y-8 mt-12 sm:mt-0">
             {/* Subtitle */}
             <p className="text-gray-300 text-lg font-instrument-sans">
               Our team doesn't just manage your email marketing.
@@ -81,10 +122,10 @@ export default function TransformSection() {
                       bounce: 0.4,
                       delay: 0.2 + index * 0.15,
                     }}
-                    className="flex justify-end"
+                    className={`absolute ${tag.style}`}
                   >
                     <span
-                      className={`${tag.color} text-white px-4 py-2 rounded-full text-sm font-semibold font-instrument-sans shadow-lg`}
+                      className={`${tag.color} text-black whitespace-nowrap px-4 py-2 rounded-full text-base font-semibold font-instrument-sans shadow-lg`}
                     >
                       {tag.text}
                     </span>
@@ -94,7 +135,7 @@ export default function TransformSection() {
 
               {/* Title */}
               <motion.h2
-                className="font-host-grotesk text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight"
+                className="font-host-grotesk text-5xl md:text-5xl lg:text-6xl font-medium text-white leading-tight"
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
                 variants={{
@@ -118,7 +159,8 @@ export default function TransformSection() {
                       },
                     }}
                   >
-                    {line}
+                    <span className="block lg:hidden">{line.mobile}</span>
+                    <span className="hidden lg:block">{line.desktop}</span>
                   </motion.div>
                 ))}
               </motion.h2>
@@ -145,9 +187,10 @@ export default function TransformSection() {
                       bounce: 0.4,
                       delay: 0.2 + index * 0.15,
                     }}
+                    className={`absolute ${tag.style}`}
                   >
                     <span
-                      className={`${tag.color} text-white px-4 py-2 rounded-full text-sm font-semibold font-instrument-sans shadow-lg`}
+                      className={`${tag.color} text-black whitespace-nowrap px-4 py-2 rounded-full text-base font-normal font-instrument-sans shadow-lg`}
                     >
                       {tag.text}
                     </span>
@@ -157,14 +200,25 @@ export default function TransformSection() {
             </div>
 
             {/* Mobile Tags */}
-            <div className="flex flex-wrap justify-center gap-4 lg:hidden">
+            <div className="lg:hidden relative w-full h-[16rem]">
               {[...leftTags, ...rightTags].map((tag, index) => (
-                <span
+                <motion.div
                   key={index}
-                  className={`${tag.color} text-white px-4 py-2 rounded-full text-sm font-semibold font-instrument-sans shadow-lg`}
+                  initial={{ scale: 0.5, opacity: 0 }}
+                  animate={isInView ? { scale: 1, opacity: 1 } : {}}
+                  transition={{
+                    type: "spring",
+                    bounce: 0.4,
+                    delay: 0.2 + index * 0.15,
+                  }}
+                  className={`absolute ${tag.styleMobile} mr-3`}
                 >
-                  {tag.text}
-                </span>
+                  <span
+                    className={`${tag.color} text-black whitespace-nowrap px-2 py-[4px] rounded-full text-sm font-normal font-instrument-sans shadow-lg`}
+                  >
+                    {tag.text}
+                  </span>
+                </motion.div>
               ))}
             </div>
           </div>

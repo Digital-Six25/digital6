@@ -18,12 +18,12 @@ export default function ContactSection() {
         <div className="flex items-center justify-between mb-16">
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 bg-[#FD893E] rounded-full"></div>
-            <span className="text-gray-300 text-sm font-instrument-sans">
+            <span className="text-gray-300 sm:text-lg font-normal font-instrument-sans">
               Get In Touch
             </span>
           </div>
 
-          <div className="text-gray-300 text-sm font-instrument-sans">
+          <div className="text-gray-300 sm:text-lg font-normal font-instrument-sans">
             Digital Six
           </div>
         </div>

@@ -19,7 +19,7 @@ export default function StatsSection() {
     },
     {
       value: "75+",
-      label: "Dedicated Digital Email Marketing Specialists",
+      label: "Combined Years of Email Marketing Experience",
     },
   ];
 
@@ -106,7 +106,7 @@ export default function StatsSection() {
                       style={{ opacity: labelOpacities[i] }}
                       className="inline-block"
                     >
-                      {char}
+                      {char === " " ? "\u00A0" : char}
                     </motion.span>
                   ))}
                 </div>

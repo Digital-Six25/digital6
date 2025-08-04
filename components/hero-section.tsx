@@ -5,6 +5,7 @@ import { ArrowUpRight, Star } from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
 import CtaButton from "./cta-button";
+import LogoCarousel from "./logo-carousel";
 
 export default function HeroSection() {
   const sectionRef = useRef(null);
@@ -19,6 +20,7 @@ export default function HeroSection() {
     </>,
     <>Channel.</>,
   ];
+
   return (
     <div
       ref={sectionRef}
@@ -40,12 +42,13 @@ export default function HeroSection() {
       {/* Content */}
       <div className="relative z-10 px-6 sm:px-8 md:px-12 py-6 sm:py-8 md:py-8">
         {/* Navbar */}
-        <nav className="flex items-center justify-between mb-12 sm:mb-16">
-          <div className="text-2xl font-bold">
-            <span className="bg-gradient-to-r from-[#E7B939] to-[#C75752] bg-clip-text text-transparent">
-              digital 6
-            </span>
-          </div>
+        <nav className="flex items-center justify-between mb-12">
+          <Image
+            src={"/images/d6-logo.png"}
+            alt="Digital6 logo"
+            width={150}
+            height={50}
+          />
         </nav>
 
         {/* Main Content */}
@@ -126,14 +129,13 @@ export default function HeroSection() {
             <CtaButton path="#contact" text="Turn your inbox into income" />
 
             {/* Partner Logos */}
-            <div className="flex  items-center space-x-6 sm:space-x-12 pt-8 sm:pt-12">
+            <div className="flex items-center space-x-6 sm:space-x-12 pt-8 sm:pt-12">
               <div className="mb-4 sm:mb-0">
                 <Image
                   src={"/images/klaviyo-logo.png"}
                   alt="klaviyo logo"
                   height={200}
                   width={200}
-                  // className="sm:h-[150px] sm:w-[150px]"
                 />
               </div>
               <div className="mb-4 sm:mb-0">
@@ -150,7 +152,6 @@ export default function HeroSection() {
 
           {/* Right Column - Contact Form */}
           <div className="flex flex-col justify-center mt-10 lg:mt-0 px-0 sm:px-4">
-            {/* Form Title */}
             <div className="flex items-center space-x-2 mb-6">
               <div className="relative">
                 <div className="relative inline-flex h-2 w-2 rounded-full bg-primary  animate-pulse"></div>
@@ -160,7 +161,6 @@ export default function HeroSection() {
               </h3>
             </div>
 
-            {/* Form Container */}
             <div className="bg-white/10 backdrop-blur-sm border text-white border-white/60 p-4 sm:p-6 rounded-md">
               <form className="space-y-5 sm:space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -274,6 +274,7 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
+      <LogoCarousel />
     </div>
   );
 }
