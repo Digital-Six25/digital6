@@ -90,7 +90,7 @@ export default function StatsSection() {
 
             <motion.div className="h-px w-60 bg-white mx-auto" />
 
-            <div className="text-gray-400 text-lg md:text-xl font-instrument-sans max-w-md mx-auto inline-block">
+            <div className="text-gray-400 text-nowrap text-lg md:text-xl font-instrument-sans max-w-md mx-auto inline-block">
               {stats[activeIndex].label.split("").map((char, i) => (
                 <motion.span
                   key={i}
