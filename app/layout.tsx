@@ -6,14 +6,12 @@ import { ThemeProvider } from "@/components/theme-provider";
 import SmoothScroll from "@/components/SmoothScroll";
 import Script from "next/script";
 
-// Instrument Sans from Google Fonts
 const instrumentSans = localFont({
   src: "../public/fonts/InstrumentSans-VariableFont_wdth,wght.ttf",
   variable: "--font-instrument-sans",
   display: "swap",
 });
 
-// Host Grotesk from local fonts
 const hostGrotesk = localFont({
   src: "../public/fonts/HostGrotesk-VariableFont_wght.ttf",
   variable: "--font-host-grotesk",

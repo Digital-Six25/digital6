@@ -19,6 +19,19 @@ export default function EmailRevenueSection() {
     </>,
   ];
 
+  const mobileLines = [
+    <>
+      Email Should
+      <br />
+      Drive <span className="text-[#FD893E]">40%</span> Of
+    </>,
+    <>
+      Your Total
+      <br />
+      Revenue.
+    </>,
+  ];
+
   return (
     <section
       ref={sectionRef}
@@ -44,7 +57,7 @@ export default function EmailRevenueSection() {
           {/* Title with Overlapping Circular Text */}
           <div className="relative">
             {/* Rotating circular text that overlaps the first letter */}
-            <div className="absolute sm:-top-[18px] -top-[35px] sm:left-[310px] -left-[10px] z-20">
+            <div className="absolute sm:-top-[30px] -top-[35px] sm:left-[310px] left-[25px] z-20">
               <div className="sm:w-24 sm:h-24 w-14 h-14 relative">
                 <svg
                   className="w-full h-full animate-spin-slow"
@@ -76,24 +89,46 @@ export default function EmailRevenueSection() {
                 },
                 hidden: {},
               }}
-              className="font-host-grotesk text-4xl md:text-5xl lg:text-6xl font-medium text-black leading-tight relative z-10"
+              className="font-host-grotesk text-black leading-[90%] tracking-[-0.03em] text-5xl sm:text-6xl font-medium"
             >
-              {headingLines.map((line, i) => (
-                <motion.div
-                  key={i}
-                  variants={{
-                    hidden: { opacity: 0, y: 30 },
-                    visible: {
-                      opacity: 1,
-                      y: 0,
-                      transition: { duration: 0.8, ease: "easeOut" },
-                    },
-                  }}
-                  style={{ overflow: "hidden" }}
-                >
-                  {line}
-                </motion.div>
-              ))}
+              <div className="hidden lg:block">
+                {headingLines.map((line, i) => (
+                  <motion.div
+                    key={i}
+                    variants={{
+                      hidden: { opacity: 0, y: 30 },
+                      visible: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { duration: 0.8, ease: "easeOut" },
+                      },
+                    }}
+                    style={{ overflow: "hidden" }}
+                  >
+                    {line}
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Mobile Lines */}
+              <div className="block lg:hidden">
+                {mobileLines.map((line, index) => (
+                  <motion.div
+                    key={`mobile-${index}`}
+                    variants={{
+                      hidden: { opacity: 0, y: 30 },
+                      visible: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { duration: 0.8, ease: "easeOut" }, // slightly longer for mobile readability
+                      },
+                    }}
+                    style={{ overflow: "hidden" }}
+                  >
+                    <span>{line}</span>
+                  </motion.div>
+                ))}
+              </div>
             </motion.h2>
           </div>
 

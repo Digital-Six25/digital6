@@ -8,9 +8,23 @@ import CtaButton from "./cta-button";
 export default function CustomerRetentionSection() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { margin: "-100px" });
+
   const lines = [
     <>
       It Costs You <span className="text-[#FD893E]">5x More</span>
+    </>,
+    <>To Acquire A New</>,
+    <>Customer Than</>,
+    <>
+      {" "}
+      <span className="text-[#FD893E]">Keep One</span>
+    </>,
+  ];
+
+  const mobileLines = [
+    <>It Costs You</>,
+    <>
+      <span className="text-[#FD893E]">5x More</span>
     </>,
     <>To Acquire A New</>,
     <>Customer Than</>,
@@ -109,22 +123,45 @@ export default function CustomerRetentionSection() {
                   hidden: {},
                 }}
               >
-                {lines.map((line, index) => (
-                  <motion.div
-                    key={index}
-                    variants={{
-                      hidden: { opacity: 0, y: 30 },
-                      visible: {
-                        opacity: 1,
-                        y: 0,
-                        transition: { duration: 0.6, ease: "easeOut" },
-                      },
-                    }}
-                    style={{ overflow: "hidden" }}
-                  >
-                    {line}
-                  </motion.div>
-                ))}
+                {/* Mobile Lines */}
+                <div className="block lg:hidden">
+                  {mobileLines.map((line, index) => (
+                    <motion.div
+                      key={`mobile-${index}`}
+                      variants={{
+                        hidden: { opacity: 0, y: 30 },
+                        visible: {
+                          opacity: 1,
+                          y: 0,
+                          transition: { duration: 0.8, ease: "easeOut" }, // slightly longer for mobile readability
+                        },
+                      }}
+                      style={{ overflow: "hidden" }}
+                    >
+                      <span>{line}</span>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Desktop Lines */}
+                <div className="hidden lg:block">
+                  {lines.map((line, index) => (
+                    <motion.div
+                      key={`desktop-${index}`}
+                      variants={{
+                        hidden: { opacity: 0, y: 30 },
+                        visible: {
+                          opacity: 1,
+                          y: 0,
+                          transition: { duration: 0.6, ease: "easeOut" },
+                        },
+                      }}
+                      style={{ overflow: "hidden" }}
+                    >
+                      <span>{line}</span>
+                    </motion.div>
+                  ))}
+                </div>
               </motion.h2>
             </div>
 

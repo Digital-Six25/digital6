@@ -28,7 +28,7 @@ export default function StatsSection() {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % stats.length);
-    }, 7000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [stats.length]);
 
@@ -39,7 +39,7 @@ export default function StatsSection() {
       x: 0,
       transition: {
         delay: i * 0.05,
-        duration: 0.4,
+        duration: 0.2,
         ease: [0.25, 0.1, 0.25, 1],
       },
     }),
@@ -48,7 +48,7 @@ export default function StatsSection() {
       x: 10,
       transition: {
         delay: i * 0.05, // exit delay now matches each character
-        duration: 0.4,
+        duration: 0.2,
         ease: [0.42, 0, 1, 1],
       },
     }),

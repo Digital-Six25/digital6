@@ -10,21 +10,37 @@ export default function TransformSection() {
   const headingLines = [
     {
       desktop: "We Transform It Into",
-      mobile: "We Transform",
+      mobile: (
+        <>
+          We Transform{" "}
+          <span id="word-it" className="relative inline-block">
+            It
+          </span>{" "}
+          Into A
+        </>
+      ),
     },
     {
       desktop: "A Powerful",
-      mobile: "Into A",
+      mobile: (
+        <>
+          <span id="word-powerful" className="relative inline-block">
+            Powerful
+          </span>
+        </>
+      ),
     },
     {
       desktop: "Revenue Engine",
       mobile: (
         <>
-          Powerful
+          <span id="word-revenue" className="relative inline-block">
+            Revenue
+          </span>
           <br />
-          Revenue
-          <br />
-          Engine
+          <span id="word-engine" className="relative inline-block">
+            Engine
+          </span>
         </>
       ),
     },
@@ -35,7 +51,7 @@ export default function TransformSection() {
       text: "Customer Loyalty",
       color: "bg-teal-500",
       style: "top-[1.0rem] left-[2.5rem]",
-      styleMobile: "-top-[15rem] -left-[2.0rem]", // Mobile
+      styleMobile: "-top-[14.2rem] -left-[2.0rem]", // Mobile
     },
     {
       text: "SMS",
@@ -49,24 +65,24 @@ export default function TransformSection() {
       text: "Reviews",
       color: "bg-purple-600",
       style: "top-[3.0rem] right-[11rem]",
-      styleMobile: "-top-[16.5rem] left-[13.2rem]", //Mobile
+      styleMobile: "-top-[15.9rem] left-[14.8rem]", //Mobile
     },
     {
       text: "CRM Management",
       color: "bg-teal-500",
       style: "top-[7.4rem] right-[3.8rem]",
-      styleMobile: "-top-[10.6rem] -right-[3rem]",
+      styleMobile: "-top-[10rem] -right-[3rem]",
     },
   ];
 
   return (
     <section
       ref={sectionRef}
-      className="relative bg-black py-24 overflow-hidden"
+      className="relative bg-black sm:py-24 overflow-hidden"
     >
       {/* Top badges */}
       <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="flex items-center justify-between w-full mb-4">
+        <div className="flex items-center justify-between w-full mb-12">
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 bg-[#FD893E] rounded-full animate-pulse" />
             <span className="text-gray-300 sm:text-lg font-normal font-instrument-sans">
@@ -125,7 +141,7 @@ export default function TransformSection() {
                     className={`absolute ${tag.style}`}
                   >
                     <span
-                      className={`${tag.color} text-black whitespace-nowrap px-4 py-2 rounded-full text-base font-normal font-instrument-sans shadow-lg`}
+                      className={`${tag.color} text-black whitespace-nowrap px-4 py-2 rounded-full text-base font-normal font-instrument-sans`}
                     >
                       {tag.text}
                     </span>
@@ -200,27 +216,74 @@ export default function TransformSection() {
             </div>
 
             {/* Mobile Tags */}
-            <div className="lg:hidden relative w-full h-[16rem]">
-              {[...leftTags, ...rightTags].map((tag, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ scale: 0.5, opacity: 0 }}
-                  animate={isInView ? { scale: 1, opacity: 1 } : {}}
-                  transition={{
-                    type: "spring",
-                    bounce: 0.4,
-                    delay: 0.2 + index * 0.15,
-                  }}
-                  className={`absolute ${tag.styleMobile} mr-3`}
-                >
-                  <span
-                    className={`${tag.color} text-black whitespace-nowrap px-2 py-[4px] rounded-full text-sm font-normal font-instrument-sans shadow-lg`}
-                  >
-                    {tag.text}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
+            <span id="word-it" className="relative block lg:hidden">
+              <motion.div
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={isInView ? { scale: 1, opacity: 1 } : {}}
+                transition={{
+                  type: "spring",
+                  bounce: 0.4,
+                  delay: 0.2,
+                }}
+                className="absolute -top-56 right-14"
+              >
+                <span className="bg-teal-500 text-black whitespace-nowrap px-2 py-[4px] rounded-full text-sm font-light font-instrument-sans shadow-md">
+                  Customer Loyalty
+                </span>
+              </motion.div>
+            </span>
+
+            {/* SMS tag over "Engine" */}
+            <span id="word-engine" className="relative block lg:hidden">
+              <motion.div
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={isInView ? { scale: 1, opacity: 1 } : {}}
+                transition={{
+                  type: "spring",
+                  bounce: 0.4,
+                  delay: 0.3,
+                }}
+                className="absolute -top-20 right-16"
+              >
+                <span className="bg-purple-600 text-black whitespace-nowrap px-2 py-[4px] rounded-full text-sm font-light font-instrument-sans shadow-md">
+                  SMS
+                </span>
+              </motion.div>
+            </span>
+            <span id="word-it" className="relative block lg:hidden">
+              <motion.div
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={isInView ? { scale: 1, opacity: 1 } : {}}
+                transition={{
+                  type: "spring",
+                  bounce: 0.4,
+                  delay: 0.2,
+                }}
+                className="absolute -top-56 left-14"
+              >
+                <span className="bg-teal-500 text-black whitespace-nowrap px-2 py-[4px] rounded-full text-sm font-light font-instrument-sans shadow-md">
+                  CRM Management
+                </span>
+              </motion.div>
+            </span>
+
+            {/* SMS tag over "Engine" */}
+            <span id="word-engine" className="relative block lg:hidden">
+              <motion.div
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={isInView ? { scale: 1, opacity: 1 } : {}}
+                transition={{
+                  type: "spring",
+                  bounce: 0.4,
+                  delay: 0.3,
+                }}
+                className="absolute bottom-80 left-20"
+              >
+                <span className="bg-purple-600 text-black whitespace-nowrap px-2 py-[4px] rounded-full text-sm font-light font-instrument-sans shadow-md">
+                  Reviews
+                </span>
+              </motion.div>
+            </span>
           </div>
         </div>
       </div>
