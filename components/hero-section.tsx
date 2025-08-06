@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { ArrowUpRight, Star } from "lucide-react";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import CtaButton from "./cta-button";
 import LogoCarousel from "./logo-carousel";
 
@@ -20,6 +20,78 @@ export default function HeroSection() {
     </>,
     <>Channel.</>,
   ];
+
+  const [formData, setFormData] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    mobilephone: "",
+    "0-2/name": "",
+    more_information__optional_: "",
+  });
+
+  const [status, setStatus] = useState("");
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const hubspotData = {
+      fields: [
+        { name: "firstname", value: formData.firstname },
+        { name: "lastname", value: formData.lastname },
+        { name: "email", value: formData.email },
+        { name: "mobilephone", value: formData.mobilephone },
+        { name: "0-2/name", value: formData["0-2/name"] },
+        {
+          name: "more_information__optional_",
+          value: formData.more_information__optional_,
+        },
+      ],
+      context: {
+        pageUri: typeof window !== "undefined" ? window.location.href : "",
+        pageName: typeof document !== "undefined" ? document.title : "",
+      },
+    };
+
+    try {
+      const response = await fetch(
+        "https://api.hsforms.com/submissions/v3/integration/submit/8236697/0774c732-7f19-4801-b566-d055c1f0bbc3",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(hubspotData),
+        }
+      );
+
+      if (response.ok) {
+        setStatus("Success! Thanks for contacting us.");
+        setFormData({
+          firstname: "",
+          lastname: "",
+          email: "",
+          mobilephone: "",
+          "0-2/name": "",
+          more_information__optional_: "",
+        });
+        if (typeof window !== "undefined" && (window as any).fbq) {
+          (window as any).fbq("trackCustom", "LeadFormSubmission");
+        }
+      } else {
+        setStatus("Submission failed. Please try again.");
+        const errorText = await response.text();
+        console.error("HubSpot error response:", errorText);
+      }
+    } catch (error) {
+      setStatus("Submission error. Please try again.");
+      console.error("Submission exception:", error);
+    }
+  };
 
   return (
     <div
@@ -162,15 +234,18 @@ export default function HeroSection() {
             </div>
 
             <div className="bg-white/10 backdrop-blur-sm border text-white border-white/60 p-4 sm:p-6 rounded-md">
-              <form className="space-y-5 sm:space-y-6">
+              <form className="space-y-5 sm:space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="firstName" className="block text-sm mb-1">
                       First Name <span className="text-red-600">*</span>{" "}
                     </label>
                     <input
-                      id="firstName"
+                      name="firstname"
                       type="text"
+                      required
+                      value={formData.firstname}
+                      onChange={handleChange}
                       className="w-full bg-transparent border-0 border-b border-gray-600 text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans text-sm"
                     />
                   </div>
@@ -179,8 +254,11 @@ export default function HeroSection() {
                       Last Name <span className="text-red-600">*</span>{" "}
                     </label>
                     <input
-                      id="lastName"
+                      name="lastname"
                       type="text"
+                      required
+                      value={formData.lastname}
+                      onChange={handleChange}
                       className="w-full bg-transparent border-0 border-b border-gray-600 text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans text-sm"
                     />
                   </div>
@@ -192,8 +270,11 @@ export default function HeroSection() {
                       Email Address <span className="text-red-600">*</span>{" "}
                     </label>
                     <input
-                      id="email"
+                      name="email"
                       type="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
                       className="w-full bg-transparent border-0 border-b border-gray-600 text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans text-sm"
                     />
                   </div>
@@ -202,8 +283,11 @@ export default function HeroSection() {
                       Phone Number <span className="text-red-600">*</span>{" "}
                     </label>
                     <input
-                      id="phone"
+                      name="mobilephone"
                       type="tel"
+                      required
+                      value={formData.mobilephone}
+                      onChange={handleChange}
                       className="w-full bg-transparent border-0 border-b border-gray-600 text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans text-sm"
                     />
                   </div>
@@ -214,8 +298,11 @@ export default function HeroSection() {
                     Company Name <span className="text-red-600">*</span>{" "}
                   </label>
                   <input
-                    id="company"
+                    name="0-2/name"
                     type="text"
+                    required
+                    value={formData["0-2/name"]}
+                    onChange={handleChange}
                     className="w-full bg-transparent border-0 border-b border-gray-600 text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans text-sm"
                   />
                 </div>
@@ -225,8 +312,10 @@ export default function HeroSection() {
                     More Information (Optional)
                   </label>
                   <textarea
-                    id="moreInfo"
+                    name="more_information__optional_"
                     rows={4}
+                    value={formData.more_information__optional_}
+                    onChange={handleChange}
                     className="w-full bg-transparent border-0 border-b border-gray-600 text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 resize-none font-instrument-sans text-sm"
                   />
                 </div>
@@ -269,6 +358,17 @@ export default function HeroSection() {
                     }
                   `}</style>
                 </div>
+                {status && (
+                  <p
+                    className={`${
+                      status.startsWith("Success")
+                        ? "text-green-500"
+                        : "text-red-500"
+                    } font-instrument-sans text-right`}
+                  >
+                    {status}
+                  </p>
+                )}
               </form>
             </div>
           </div>

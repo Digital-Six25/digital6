@@ -1,12 +1,85 @@
 "use client";
+
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export default function ContactSection() {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef);
+
+  const [formData, setFormData] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    mobilephone: "",
+    "0-2/name": "",
+    more_information__optional_: "",
+  });
+
+  const [status, setStatus] = useState("");
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const hubspotData = {
+      fields: [
+        { name: "firstname", value: formData.firstname },
+        { name: "lastname", value: formData.lastname },
+        { name: "email", value: formData.email },
+        { name: "mobilephone", value: formData.mobilephone },
+        { name: "0-2/name", value: formData["0-2/name"] },
+        {
+          name: "more_information__optional_",
+          value: formData.more_information__optional_,
+        },
+      ],
+      context: {
+        pageUri: typeof window !== "undefined" ? window.location.href : "",
+        pageName: typeof document !== "undefined" ? document.title : "",
+      },
+    };
+
+    try {
+      const response = await fetch(
+        "https://api.hsforms.com/submissions/v3/integration/submit/8236697/0774c732-7f19-4801-b566-d055c1f0bbc3",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(hubspotData),
+        }
+      );
+
+      if (response.ok) {
+        setStatus("Success! Thanks for contacting us.");
+        setFormData({
+          firstname: "",
+          lastname: "",
+          email: "",
+          mobilephone: "",
+          "0-2/name": "",
+          more_information__optional_: "",
+        });
+        if (typeof window !== "undefined" && (window as any).fbq) {
+          (window as any).fbq("trackCustom", "LeadFormSubmission");
+        }
+      } else {
+        setStatus("Submission failed. Please try again.");
+        const errorText = await response.text();
+        console.error("HubSpot error response:", errorText);
+      }
+    } catch (error) {
+      setStatus("Submission error. Please try again.");
+      console.error("Submission exception:", error);
+    }
+  };
 
   return (
     <section
@@ -39,11 +112,8 @@ export default function ContactSection() {
                 fill
                 className="object-cover"
               />
-
-              {/* Black overlay 60% */}
               <div className="absolute inset-0 bg-black/60"></div>
 
-              {/* Content Overlay */}
               <div
                 className="absolute inset-0 flex flex-col justify-center"
                 style={{ paddingLeft: "64px" }}
@@ -54,11 +124,7 @@ export default function ContactSection() {
                     initial="hidden"
                     animate={isInView ? "visible" : "hidden"}
                     variants={{
-                      visible: {
-                        transition: {
-                          staggerChildren: 0.35,
-                        },
-                      },
+                      visible: { transition: { staggerChildren: 0.35 } },
                       hidden: {},
                     }}
                   >
@@ -112,7 +178,7 @@ export default function ContactSection() {
               style={{ backgroundColor: "#151515" }}
               id="contact"
             >
-              <form className="space-y-8">
+              <form className="space-y-8" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-white text-sm font-instrument-sans relative">
@@ -122,7 +188,11 @@ export default function ContactSection() {
                       </span>
                     </label>
                     <input
+                      name="firstname"
                       type="text"
+                      required
+                      value={formData.firstname}
+                      onChange={handleChange}
                       className="w-full bg-transparent border-0 border-b border-[#E3E8EF] text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans"
                     />
                   </div>
@@ -134,7 +204,11 @@ export default function ContactSection() {
                       </span>
                     </label>
                     <input
+                      name="lastname"
                       type="text"
+                      required
+                      value={formData.lastname}
+                      onChange={handleChange}
                       className="w-full bg-transparent border-0 border-b border-[#E3E8EF] text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans"
                     />
                   </div>
@@ -149,7 +223,11 @@ export default function ContactSection() {
                       </span>
                     </label>
                     <input
+                      name="email"
                       type="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
                       className="w-full bg-transparent border-0 border-b border-[#E3E8EF] text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans"
                     />
                   </div>
@@ -161,7 +239,11 @@ export default function ContactSection() {
                       </span>
                     </label>
                     <input
+                      name="mobilephone"
                       type="tel"
+                      required
+                      value={formData.mobilephone}
+                      onChange={handleChange}
                       className="w-full bg-transparent border-0 border-b border-[#E3E8EF] text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans"
                     />
                   </div>
@@ -175,7 +257,11 @@ export default function ContactSection() {
                     </span>
                   </label>
                   <input
+                    name="0-2/name"
                     type="text"
+                    required
+                    value={formData["0-2/name"]}
+                    onChange={handleChange}
                     className="w-full bg-transparent border-0 border-b border-[#E3E8EF] text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans"
                   />
                 </div>
@@ -185,12 +271,15 @@ export default function ContactSection() {
                     More Information (Optional)
                   </label>
                   <textarea
-                    rows={1}
+                    name="more_information__optional_"
+                    rows={3}
+                    value={formData.more_information__optional_}
+                    onChange={handleChange}
                     className="w-full bg-transparent border-0 border-b border-[#E3E8EF] text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 resize-none font-instrument-sans"
                   />
                 </div>
 
-                <div className="pt-4 flex justify-end">
+                <div className="pt-4 flex flex-col items-end space-y-2">
                   <button
                     type="submit"
                     className="group relative text-white font-semibold flex font-instrument-sans"
@@ -202,6 +291,18 @@ export default function ContactSection() {
                       </div>
                     </span>
                   </button>
+
+                  {status && (
+                    <p
+                      className={`${
+                        status.startsWith("Success")
+                          ? "text-green-500"
+                          : "text-red-500"
+                      } font-instrument-sans`}
+                    >
+                      {status}
+                    </p>
+                  )}
 
                   <style jsx>{`
                     .underline-wrapper {
@@ -220,11 +321,11 @@ export default function ContactSection() {
                     }
                     button.group:hover .underline-wrapper::after {
                       width: 80%;
-                      transform-origin: left; /* immediate */
+                      transform-origin: left;
                     }
                     button.group:not(:hover) .underline-wrapper::after {
                       width: 0;
-                      transform-origin: right; /* immediate */
+                      transform-origin: right;
                     }
                   `}</style>
                 </div>
