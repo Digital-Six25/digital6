@@ -8,7 +8,10 @@ export default function LogoCarousel() {
       <div className="absolute top-0 left-0 w-full h-full z-10  pointer-events-none" />
       <div className="flex w-max animate-marquee space-x-24 px-2">
         {[
-          "kings-bottle-logo.png",
+          "Coochie.webp",
+          "images.jpeg",
+          "ITR.jpg",
+          "JB Metro.png",
           "jim-logo.png",
           "fitstop-logo.png",
           "cdk9-logo.png",
@@ -24,7 +27,30 @@ export default function LogoCarousel() {
           />
         ))}
         {[
-          "kings-bottle-logo.png",
+          "Coochie.webp",
+          "images.jpeg",
+          "ITR.jpg",
+          "JB Metro.png",
+          "jim-logo.png",
+          "fitstop-logo.png",
+          "cdk9-logo.png",
+          "rededucation-logo.png",
+        ].map((logo, i) => (
+          <Image
+            key={`duplicate-${i}`}
+            src={`/images/${logo}`}
+            alt={`Logo duplicate ${i + 1}`}
+            width={120}
+            height={40}
+            className="object-contain"
+          />
+        ))}
+
+        {[
+          "Coochie.webp",
+          "images.jpeg",
+          "ITR.jpg",
+          "JB Metro.png",
           "jim-logo.png",
           "fitstop-logo.png",
           "cdk9-logo.png",
@@ -40,23 +66,10 @@ export default function LogoCarousel() {
           />
         ))}
         {[
-          "kings-bottle-logo.png",
-          "jim-logo.png",
-          "fitstop-logo.png",
-          "cdk9-logo.png",
-          "rededucation-logo.png",
-        ].map((logo, i) => (
-          <Image
-            key={`duplicate-${i}`}
-            src={`/images/${logo}`}
-            alt={`Logo duplicate ${i + 1}`}
-            width={120}
-            height={40}
-            className="object-contain"
-          />
-        ))}
-        {[
-          "kings-bottle-logo.png",
+          "Coochie.webp",
+          "images.jpeg",
+          "ITR.jpg",
+          "JB Metro.png",
           "jim-logo.png",
           "fitstop-logo.png",
           "cdk9-logo.png",
