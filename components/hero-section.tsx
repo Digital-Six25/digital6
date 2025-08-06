@@ -144,7 +144,7 @@ export default function HeroSection() {
                   alt="hubspot logo"
                   height={45}
                   width={120}
-                  className="sm:h-[67px] sm:w-[189px]"
+                  className="sm:h-[67px] sm:w-[189px] h-[67px] w-[220px]"
                 />
               </div>
             </div>
