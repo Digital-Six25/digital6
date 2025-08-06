@@ -31,6 +31,7 @@ export default function HeroSection() {
   });
 
   const [status, setStatus] = useState("");
+  const [showStatus, setShowStatus] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -71,6 +72,13 @@ export default function HeroSection() {
 
       if (response.ok) {
         setStatus("Success! Thanks for contacting us.");
+        setShowStatus(true);
+
+        setTimeout(() => {
+          setShowStatus(false);
+          setStatus("");
+        }, 3000);
+
         setFormData({
           firstname: "",
           lastname: "",
@@ -84,11 +92,23 @@ export default function HeroSection() {
         }
       } else {
         setStatus("Submission failed. Please try again.");
+        setShowStatus(true);
+
+        setTimeout(() => {
+          setShowStatus(false);
+          setStatus("");
+        }, 3000);
         const errorText = await response.text();
         console.error("HubSpot error response:", errorText);
       }
     } catch (error) {
       setStatus("Submission error. Please try again.");
+      setShowStatus(true);
+
+      setTimeout(() => {
+        setShowStatus(false);
+        setStatus("");
+      }, 3000);
       console.error("Submission exception:", error);
     }
   };
@@ -358,11 +378,11 @@ export default function HeroSection() {
                     }
                   `}</style>
                 </div>
-                {status && (
+                {showStatus && (
                   <p
                     className={`${
                       status.startsWith("Success")
-                        ? "text-green-500"
+                        ? "text-primary"
                         : "text-red-500"
                     } font-instrument-sans text-right`}
                   >
