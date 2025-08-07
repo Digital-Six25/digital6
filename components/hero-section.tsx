@@ -25,8 +25,8 @@ export default function HeroSection() {
     firstname: "",
     lastname: "",
     email: "",
-    mobilephone: "",
-    "0-2/name": "",
+    phone: "",
+    company: "",
     more_information__optional_: "",
   });
 
@@ -47,8 +47,8 @@ export default function HeroSection() {
         { name: "firstname", value: formData.firstname },
         { name: "lastname", value: formData.lastname },
         { name: "email", value: formData.email },
-        { name: "mobilephone", value: formData.mobilephone },
-        { name: "0-2/name", value: formData["0-2/name"] },
+        { name: "phone", value: formData.phone },
+        { name: "company", value: formData.company },
         {
           name: "more_information__optional_",
           value: formData.more_information__optional_,
@@ -83,8 +83,8 @@ export default function HeroSection() {
           firstname: "",
           lastname: "",
           email: "",
-          mobilephone: "",
-          "0-2/name": "",
+          phone: "",
+          company: "",
           more_information__optional_: "",
         });
         if (typeof window !== "undefined" && (window as any).fbq) {
@@ -303,10 +303,10 @@ export default function HeroSection() {
                       Phone Number <span className="text-red-600">*</span>{" "}
                     </label>
                     <input
-                      name="mobilephone"
+                      name="phone"
                       type="tel"
                       required
-                      value={formData.mobilephone}
+                      value={formData.phone}
                       onChange={handleChange}
                       className="w-full bg-transparent border-0 border-b border-gray-600 text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans text-sm"
                     />
@@ -318,10 +318,10 @@ export default function HeroSection() {
                     Company Name <span className="text-red-600">*</span>{" "}
                   </label>
                   <input
-                    name="0-2/name"
+                    name="company"
                     type="text"
                     required
-                    value={formData["0-2/name"]}
+                    value={formData.company}
                     onChange={handleChange}
                     className="w-full bg-transparent border-0 border-b border-gray-600 text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans text-sm"
                   />

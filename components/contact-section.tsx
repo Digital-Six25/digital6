@@ -13,8 +13,8 @@ export default function ContactSection() {
     firstname: "",
     lastname: "",
     email: "",
-    mobilephone: "",
-    "0-2/name": "",
+    phone: "",
+    company: "",
     more_information__optional_: "",
   });
 
@@ -35,8 +35,8 @@ export default function ContactSection() {
         { name: "firstname", value: formData.firstname },
         { name: "lastname", value: formData.lastname },
         { name: "email", value: formData.email },
-        { name: "mobilephone", value: formData.mobilephone },
-        { name: "0-2/name", value: formData["0-2/name"] },
+        { name: "phone", value: formData.phone },
+        { name: "company", value: formData.company },
         {
           name: "more_information__optional_",
           value: formData.more_information__optional_,
@@ -70,8 +70,8 @@ export default function ContactSection() {
           firstname: "",
           lastname: "",
           email: "",
-          mobilephone: "",
-          "0-2/name": "",
+          phone: "",
+          company: "",
           more_information__optional_: "",
         });
         if (typeof window !== "undefined" && (window as any).fbq) {
@@ -258,10 +258,10 @@ export default function ContactSection() {
                       </span>
                     </label>
                     <input
-                      name="mobilephone"
+                      name="phone"
                       type="tel"
                       required
-                      value={formData.mobilephone}
+                      value={formData.phone}
                       onChange={handleChange}
                       className="w-full bg-transparent border-0 border-b border-[#E3E8EF] text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans"
                     />
@@ -276,10 +276,10 @@ export default function ContactSection() {
                     </span>
                   </label>
                   <input
-                    name="0-2/name"
+                    name="company"
                     type="text"
                     required
-                    value={formData["0-2/name"]}
+                    value={formData.company}
                     onChange={handleChange}
                     className="w-full bg-transparent border-0 border-b border-[#E3E8EF] text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans"
                   />
