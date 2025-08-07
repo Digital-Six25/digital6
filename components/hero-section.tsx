@@ -26,7 +26,7 @@ export default function HeroSection() {
     lastname: "",
     email: "",
     phone: "",
-    company: "",
+    "0-2/name": "",
     more_information__optional_: "",
   });
 
@@ -48,7 +48,7 @@ export default function HeroSection() {
         { name: "lastname", value: formData.lastname },
         { name: "email", value: formData.email },
         { name: "phone", value: formData.phone },
-        { name: "company", value: formData.company },
+        { name: "0-2/name", value: formData["0-2/name"] },
         {
           name: "more_information__optional_",
           value: formData.more_information__optional_,
@@ -84,7 +84,7 @@ export default function HeroSection() {
           lastname: "",
           email: "",
           phone: "",
-          company: "",
+          "0-2/name": "",
           more_information__optional_: "",
         });
         if (typeof window !== "undefined" && (window as any).fbq) {
@@ -318,10 +318,10 @@ export default function HeroSection() {
                     Company Name <span className="text-red-600">*</span>{" "}
                   </label>
                   <input
-                    name="company"
+                    name="0-2/name"
                     type="text"
                     required
-                    value={formData.company}
+                    value={formData["0-2/name"]}
                     onChange={handleChange}
                     className="w-full bg-transparent border-0 border-b border-gray-600 text-white placeholder:text-gray-400 focus:border-[#FD893E] focus:outline-none pb-2 font-instrument-sans text-sm"
                   />
